@@ -15,3 +15,10 @@ class BasePage():
         except (NoSuchElementException):
             return False
         return True
+
+    def try_click_element(self, how, what):
+        try:
+            self.browser.find_element(how,what).click()
+        except (NoSuchElementException):
+            return False
+        return True
