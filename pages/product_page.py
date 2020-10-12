@@ -52,3 +52,9 @@ class ProductPage(BasePage):
         item_summ = self.browser.find_element(*ProductPageLocators.ITEM_PAGE_SUMM)
         assert added_summ.text.replace(' ','') == item_summ.text.replace(' ',''), f"Суммы покупок различаются, нужная - {item_summ.text}, в сообщении - {added_summ.text}"
         assert mini_cart_summ.replace(' ','') == item_summ.text.replace(' ',''), f"Суммы покупок различаются, нужная - {item_summ.text}, в мини-корзине - {mini_cart_summ}"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCES_ADD_MESSAGE), "При открытии предмета появилось сообщение об успешной покупке"
+
+    def should_desappeared_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCES_ADD_MESSAGE), "Сообщение не исчезло"
