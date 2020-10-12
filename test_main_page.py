@@ -2,6 +2,7 @@ import pytest
 import time
 from .pages.main_page import MainPage
 from .pages.login_page import LoginPage
+from .pages.basket_page import BasketPage
 
 
 link = "http://selenium1py.pythonanywhere.com/"
@@ -18,7 +19,6 @@ class TestLoginFromMainPage():
         page.open()
         page.should_be_login_link()
 
-@pytest.mark.skip
 def test_guest_login_form(browser):
     page = MainPage(browser, link)
     page.open()
@@ -28,7 +28,7 @@ def test_guest_login_form(browser):
     login_page.should_be_login_page()
 
 def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
-    page = MainPage(browser, link)
+    page = BasketPage(browser, link)
     page.open()
     page.go_to_cart()
     page.cart_list_is_empty()
