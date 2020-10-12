@@ -14,7 +14,7 @@ def test_guest_can_go_to_login_page_from_product_page (browser):
     page.open()
     page.go_to_login_page()
 
-@pytest.mark.skip
+@pytest.mark.xfail #если страница не промо, то фейл, если промо, то проходит
 def test_add_promo_item_to_cart(browser):
     page = ProductPage(browser,link)
     page.open()
@@ -27,7 +27,7 @@ def test_add_promo_item_to_cart(browser):
     page.added_item_name()
     page.added_item_cost()
 
-@pytest.mark.skip
+@pytest.mark.xfail
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     page = ProductPage(browser,link)
     page.open()
@@ -40,10 +40,16 @@ def test_guest_cant_see_success_message(browser):
     page.open()
     page.should_not_be_success_message()
 
-@pytest.mark.skip
+@pytest.mark.xfail #
 def test_message_dissapeared_after_adding_product_to_basket(browser):
     page = ProductPage(browser,link)
     page.open()
     page.add_item_to_cart()
     #page.solve_quiz_and_get_code()
     page.should_desappeared_success_message()
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    page = ProductPage(browser,link)
+    page.open()
+    page.go_to_cart()
+    page.cart_list_is_empty()

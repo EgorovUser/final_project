@@ -3,6 +3,9 @@ from selenium.webdriver.common.by import By
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+    GO_TO_CART_BUTTON = (By.CSS_SELECTOR, ".btn-group a.btn-default")
+    CART_ITEMS_ROWS = (By.CSS_SELECTOR, ".basket-items .row")
+    EMPTY_CART_MESSAGE = (By.CSS_SELECTOR, "#content_inner > p")
 
 class LoginPageLocators():
     LOGIN_FORM = (By.CSS_SELECTOR, ".login_form")
