@@ -1,6 +1,7 @@
 import pytest
 import time
 from .pages.product_page import ProductPage
+from .pages.login_page import LoginPage
 
 link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
 
@@ -15,7 +16,7 @@ def test_guest_can_go_to_login_page_from_product_page (browser):
     page.go_to_login_page()
 
 @pytest.mark.xfail #если страница не промо, то фейл, если промо, то проходит
-def test_add_promo_item_to_cart(browser):
+def test_guest_can_add_promo_item_to_cart(browser):
     page = ProductPage(browser,link)
     page.open()
     page.link_is_promo_page()
@@ -53,3 +54,25 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     page.open()
     page.go_to_cart()
     page.cart_list_is_empty()
+
+class TestUserAddToBasketFromProductPage():
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self,browser):
+        page = LoginPage(browser, link)
+        page.open()
+        page.go_to_login_page()
+        page.register_new_user("amongASS@main.conn", "000111aaa")
+
+    def test_user_cant_see_success_message(self, browser):
+        page = ProductPage(browser, link)
+        page.open()
+        page.should_not_be_success_message()
+
+    def test_user_can_add_item_to_cart(self, browser):
+        page = ProductPage(browser, link)
+        page.open()
+        page.add_item_to_cart()
+        page.item_added_to_cart_messages()
+        page.cart_cost_message()
+        page.added_item_name()
+        page.added_item_cost()

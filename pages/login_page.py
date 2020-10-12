@@ -1,6 +1,7 @@
 from .base_page import BasePage
 from selenium.webdriver.common.by import By
 from .locators import LoginPageLocators
+from .locators import ProductPageLocators
 
 
 class LoginPage(BasePage):
@@ -25,3 +26,14 @@ class LoginPage(BasePage):
         assert self.is_element_present(*LoginPageLocators.REG_PASS), "Reg. Отсутствует поле ввода пароля"
         assert self.is_element_present(*LoginPageLocators.REG_REPASS), "Reg. Отсутствует поле ввода повторного пароля"
         assert self.is_element_present(*LoginPageLocators.REG_BUTTON), "Reg. Отсутствует кнопка регистрации"
+
+    def register_new_user(self, email, password):
+        self.browser.find_element(*LoginPageLocators.REG_EMAIL).send_keys(email)
+        self.browser.find_element(*LoginPageLocators.REG_PASS).send_keys(password)
+        self.browser.find_element(*LoginPageLocators.REG_REPASS).send_keys(password)
+        self.browser.find_element(*LoginPageLocators.REG_BUTTON).click()
+    
+    def login_user(self, email, password):
+        self.browser.find_element(*LoginPageLocators.LOGIN_LOGIN).send_keys(email)
+        self.browser.find_element(*LoginPageLocators.LOGIN_PASS).send_keys(password)
+        self.browser.find_element(*LoginPageLocators.LOGIN_BUTTON).click()

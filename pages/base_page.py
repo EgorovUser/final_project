@@ -59,3 +59,6 @@ class BasePage():
 
     def cart_is_empty_message(self):
         assert self.is_element_present(*BasePageLocators.EMPTY_CART_MESSAGE), "Сообщения о пустой корзине нет"
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "Пользователь не авторизирован"

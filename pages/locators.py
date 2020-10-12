@@ -6,6 +6,7 @@ class BasePageLocators():
     GO_TO_CART_BUTTON = (By.CSS_SELECTOR, ".btn-group a.btn-default")
     CART_ITEMS_ROWS = (By.CSS_SELECTOR, ".basket-items .row")
     EMPTY_CART_MESSAGE = (By.CSS_SELECTOR, "#content_inner > p")
+    USER_ICON = (By.CSS_SELECTOR, ".icon-user")
 
 class LoginPageLocators():
     LOGIN_FORM = (By.CSS_SELECTOR, ".login_form")
