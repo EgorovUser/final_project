@@ -19,7 +19,7 @@ def test_guest_can_go_to_login_page_from_product_page (browser):
     page.go_to_login_page()
 
 @pytest.mark.need_review
-def test_guest_can_add_item_to_cart(browser):
+def test_guest_can_add_product_to_basket(browser):
     page = ProductPage(browser,link)
     page.open()
     #page.link_is_promo_page() Для заданий с промо
@@ -74,7 +74,7 @@ class TestUserAddToBasketFromProductPage():
         page.should_not_be_success_message()
 
     @pytest.mark.need_review
-    def test_user_can_add_item_to_cart(self, browser):
+    def test_user_can_add_product_to_basket(self, browser):
         page = ProductPage(browser, link)
         page.open()
         page.should_be_authorized_user()
