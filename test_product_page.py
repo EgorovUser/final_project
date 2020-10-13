@@ -65,7 +65,7 @@ class TestUserAddToBasketFromProductPage():
         page = LoginPage(browser, link)
         page.open()
         page.go_to_login_page()
-        page.register_new_user(str(time.time()) + "@fakemail.com", "000111aaa") #взамен page.register_new_user
+        page.register_new_user(str(time.time()) + "@fakemail.com", "000111aaa")
 
     def test_user_cant_see_success_message(self, browser):
         page = ProductPage(browser, link)
